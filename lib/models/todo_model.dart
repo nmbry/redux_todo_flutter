@@ -20,4 +20,17 @@ class TodoModel {
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }
+
+  // 以下のリンク先を参考にfromJson/toJsonを実装した
+  // <https://docs.flutter.dev/development/data-and-backend/json>
+  TodoModel.fromJson(Map<String, dynamic> json)
+      : uuid = json['uuid'],
+        label = json['label'],
+        isCompleted = json['isCompleted'];
+
+  Map<String, dynamic> toJson() => {
+        'uuid': uuid,
+        'label': label,
+        'isCompleted': isCompleted,
+      };
 }

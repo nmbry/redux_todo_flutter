@@ -15,6 +15,13 @@ class TodoDeleteAction {
   final String uuid;
 }
 
+/// TODOの完了状態をトグルする
+class TodoToggleAction {
+  const TodoToggleAction(this.uuid);
+
+  final String uuid;
+}
+
 /// TODOリストをセットする
 class TodosSetAction {
   const TodosSetAction(this.todos);
@@ -22,9 +29,12 @@ class TodosSetAction {
   final List<TodoModel> todos;
 }
 
-/// TODOの完了状態をトグルする
-class TodoToggleAction {
-  const TodoToggleAction(this.uuid);
+/// TODOリストをSharedPreferencesで保存する
+class TodosSaveAction {
+  const TodosSaveAction();
+}
 
-  final String uuid;
+/// TODOリストをSharedPreferencesから読み取る
+class TodosLoadAction {
+  const TodosLoadAction();
 }

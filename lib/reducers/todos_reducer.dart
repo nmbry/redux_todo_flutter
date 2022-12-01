@@ -3,6 +3,7 @@ import 'package:redux_todo_flutter/states/todos_state.dart';
 
 TodosState todosReducer(TodosState state, dynamic action) {
   if (action is TodosSetAction) {
+    /// from Middleware
     return state.copyWith(todos: action.todos);
   } else {
     return state;

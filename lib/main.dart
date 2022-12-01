@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_todo_flutter/actions/todos_actions.dart';
 import 'package:redux_todo_flutter/middlewares/todos_middlewares.dart';
 import 'package:redux_todo_flutter/reducers/app_reducer.dart';
 import 'package:redux_todo_flutter/states/app_state.dart';
@@ -10,13 +11,16 @@ void main() {
   final store = Store<AppState>(
     appReducer,
     initialState: const AppState(),
-    distinct: true, // Stateが同じ値の場合は再描画をしない設定
+    distinct: true, // Stateが同じ値の場合は再描画を行わない設定
     middleware: [
       ...todosMiddlewares,
     ],
   );
 
   runApp(MyApp(store: store));
+
+  // 保存された内容を読み込む
+  store.dispatch(const TodosLoadAction());
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: TodosScreen(),
+        home: const TodosScreen(),
       ),
     );
   }
